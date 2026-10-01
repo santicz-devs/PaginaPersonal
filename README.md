@@ -90,11 +90,6 @@ Me interesa combinar conocimientos de negocio con herramientas tecnológicas par
 ## Contacto
 
 Si querés conocer más sobre mis proyectos o conversar sobre una oportunidad profesional, podés contactarme.
-
-**WhatsApp:** [Contactarme](https://wa.me/TUNUMERO)
-
-**Portfolio:** [Ver portfolio](TU-LINK)
-
 ---
 
 © 2026 Santi
