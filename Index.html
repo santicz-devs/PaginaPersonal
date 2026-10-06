@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Santi — Portfolio</title>
+
+    <meta
+        name="description"
+        content="Portfolio personal de Santi. Negocios, tecnología, desarrollo web, analítica digital y datos."
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+
+            <a href="#home" class="logo">SANTI.</a>
+
+            <nav class="nav" id="nav">
+                <a href="#areas">Áreas</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="#experiencia">Experiencia</a>
+                <a href="#sobre-mi">Sobre mí</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+
+            <a href="#contacto" class="header-cta">
+                Hablemos
+            </a>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                ☰
+            </button>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <div class="hero-text">
+
+                    <span class="eyebrow">
+                        PORTFOLIO PERSONAL · 2026
+                    </span>
+
+                    <h1>
+                        Santi.<br>
+                        <span>Negocios + Tecnología.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Estudiante de Negocios Digitales enfocado en el desarrollo
+                        de soluciones digitales, desarrollo web y analítica.
+                        Creo proyectos que combinan tecnología, experiencia de
+                        usuario y visión de negocio.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#proyectos" class="button button-dark">
+                            Ver proyectos
+                        </a>
+
+                        <a href="#sobre-mi" class="button button-light">
+                            Conocerme
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div class="hero-image-wrapper">
+
+                    <img
+                        src="img/santi.jpg"
+                        alt="Foto de Santi"
+                        class="hero-image"
+                    >
+
+                    <div class="hero-image-info">
+                        <span>BUENOS AIRES</span>
+                        <span>2007 — 2026</span>
+                    </div>
+
+                    <div class="hero-scroll">
+                        DESLIZÁ ↓
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ÁREAS -->
+        <section class="section areas" id="areas">
+
+            <div class="section-heading">
+
+                <span class="section-number">
+                    01
+                </span>
+
+                <div>
+                    <span class="section-label">
+                        ÁREAS
+                    </span>
+
+                    <h2>
+                        Lo que hago.
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="areas-grid">
+
+                <article class="area-card">
+                    <span class="area-number">01</span>
+
+                    <h3>
+                        Desarrollo Web
+                    </h3>
+
+                    <p>
+                        Diseño y desarrollo de sitios web responsive
+                        utilizando HTML, CSS y JavaScript.
+                    </p>
+
+                    <div class="tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </article>
+
+
+                <article class="area-card">
+                    <span class="area-number">02</span>
+
+                    <h3>
+                        Analítica Digital
+                    </h3>
+
+                    <p>
+                        Implementación de herramientas para medir,
+                        analizar y comprender el comportamiento digital.
+                    </p>
+
+                    <div class="tags">
+                        <span>GA4</span>
+                        <span>GTM</span>
+                        <span>Analytics</span>
+                    </div>
+                </article>
+
+
+                <article class="area-card">
+                    <span class="area-number">03</span>
+
+                    <h3>
+                        Datos + Python
+                    </h3>
+
+                    <p>
+                        Desarrollo de aplicaciones y análisis de datos
+                        utilizando Python, Pandas y Streamlit.
+                    </p>
+
+                    <div class="tags">
+                        <span>Python</span>
+                        <span>Pandas</span>
+                        <span>Streamlit</span>
+                    </div>
+                </article>
+
+
+                <article class="area-card">
+                    <span class="area-number">04</span>
+
+                    <h3>
+                        UX/UI + Negocios
+                    </h3>
+
+                    <p>
+                        Diseño de experiencias digitales teniendo en cuenta
+                        las necesidades del usuario y los objetivos del negocio.
+                    </p>
+
+                    <div class="tags">
+                        <span>UX/UI</span>
+                        <span>Negocios</span>
+                        <span>Diseño</span>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROYECTOS -->
+        <section class="section projects" id="proyectos">
+
+            <div class="section-heading">
+
+                <span class="section-number">
+                    02
+                </span>
+
+                <div>
+                    <span class="section-label">
+                        PROYECTOS
+                    </span>
+
+                    <h2>
+                        Trabajo seleccionado.
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="projects-wrapper">
+
+                <div
+                    class="project-slider"
+                    id="project-slider"
+                >
+
+                    <div
+                        class="project-list"
+                        id="project-list"
+                    ></div>
+
+                </div>
+
+
+                <div class="project-controls">
+
+                    <div
+                        class="project-dots"
+                        id="project-dots"
+                    ></div>
+
+                    <span class="drag-text">
+                        DESLIZÁ PARA EXPLORAR
+                    </span>
+
+                    <span
+                        class="project-counter"
+                        id="project-counter"
+                    >
+                        01 / 05
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPERIENCIA -->
+        <section class="section experience" id="experiencia">
+
+            <div class="section-heading">
+
+                <span class="section-number">
+                    03
+                </span>
+
+                <div>
+                    <span class="section-label">
+                        EXPERIENCIA
+                    </span>
+
+                    <h2>
+                        Mi recorrido.
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="experience-list">
+
+                <article class="experience-item">
+
+                    <div class="experience-date">
+                        ENE 2025 — ABR 2025
+                    </div>
+
+                    <div class="experience-main">
+
+                        <h3>
+                            Asistente de Ventas y Atención al Cliente
+                        </h3>
+
+                        <p>
+                            Comercio minorista de alimentos.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="experience-item">
+
+                    <div class="experience-date">
+                        ABR 2024 — JUN 2024
+                    </div>
+
+                    <div class="experience-main">
+
+                        <h3>
+                            Atención al Cliente
+                        </h3>
+
+                        <p>
+                            Banco Ciudad.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="experience-item">
+
+                    <div class="experience-date">
+                        2024
+                    </div>
+
+                    <div class="experience-main">
+
+                        <h3>
+                            Sellado y Revisión de Contratos
+                        </h3>
+
+                        <p>
+                            Bolsa de Comercio de Bahía Blanca.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="experience-item">
+
+                    <div class="experience-date">
+                        2024
+                    </div>
+
+                    <div class="experience-main">
+
+                        <h3>
+                            Charla sobre Salud Financiera
+                        </h3>
+
+                        <p>
+                            Cocos Capital.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="experience-item">
+
+                    <div class="experience-date">
+                        2024
+                    </div>
+
+                    <div class="experience-main">
+
+                        <h3>
+                            Ayudante
+                        </h3>
+
+                        <p>
+                            Fundación Rey de Reyes.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- SOBRE MÍ -->
+        <section class="section about" id="sobre-mi">
+
+            <div class="section-heading">
+
+                <span class="section-number">
+                    04
+                </span>
+
+                <div>
+                    <span class="section-label">
+                        SOBRE MÍ
+                    </span>
+
+                    <h2>
+                        Un poco sobre mí.
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="about-grid">
+
+                <div class="about-image-wrapper">
+
+                    <img
+                        src="img/santi.jpg"
+                        alt="Santi"
+                        class="about-image"
+                    >
+
+                </div>
+
+
+                <div class="about-content">
+
+                    <p class="about-lead">
+                        Soy Santi, nací en Buenos Aires, Argentina,
+                        en 2007.
+                    </p>
+
+                    <p>
+                        Realicé mi formación secundaria en el Buenos Aires
+                        Christian School, donde cursé un programa bilingüe
+                        que fortaleció mi dominio del inglés y me permitió
+                        rendir diversos exámenes internacionales.
+                    </p>
+
+                    <p>
+                        Esta formación contribuyó tanto a mi desarrollo
+                        académico como a mi preparación para desenvolverme
+                        en entornos profesionales.
+                    </p>
+
+
+                    <div class="about-facts">
+
+                        <div>
+                            <span>ESTUDIOS</span>
+                            <strong>
+                                Negocios Digitales
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>UNIVERSIDAD</span>
+                            <strong>
+                                UADE
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>IDIOMA</span>
+                            <strong>
+                                Inglés avanzado
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACTO -->
+        <section class="section contact" id="contacto">
+
+            <div class="contact-inner">
+
+                <span class="section-label">
+                    05 · CONTACTO
+                </span>
+
+                <h2>
+                    ¿Trabajamos juntos?
+                </h2>
+
+                <p>
+                    Si querés conocer más sobre mis proyectos o
+                    conversar sobre una oportunidad, podés contactarme.
+                </p>
+
+
+                <div class="contact-links">
+
+                    <a
+                        href="mailto:santi.czere@gmail.com"
+                        class="contact-link"
+                    >
+                        Email
+                    </a>
+
+                    <a
+                        href="https://wa.me/5491128773787"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="contact-link"
+                    >
+                        WhatsApp
+                    </a>
+
+                    <a
+                        href="https://github.com/santicz-devs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="contact-link"
+                    >
+                        GitHub
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <span>
+            SANTI.
+        </span>
+
+        <span>
+            © 2026
+        </span>
+
+        <span>
+            BUENOS AIRES, ARGENTINA
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

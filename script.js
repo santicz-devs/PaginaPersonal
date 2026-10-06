@@ -1,428 +1,386 @@
-// ==========================================
-// PROYECTOS
-// ==========================================
+/* =========================
+   PROJECT DATA
+========================= */
 
 const projects = [
-
     {
         title: "NativoMates",
-
         description:
-            "NativoMates es un proyecto de desarrollo web orientado a la creación de una presencia digital para un emprendimiento comercial. El proyecto aborda el diseño y desarrollo de una interfaz web responsive, estructurada para presentar información del negocio, exhibir sus productos y facilitar el contacto directo con potenciales clientes.",
-
-        tags: [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "GTM",
-            "GA4"
-        ],
-
+            "Desarrollo web para un emprendimiento comercial, con información del negocio, catálogo de productos y contacto directo.",
         image: "img/NM1.png",
-
-        link: "https://nativomates.github.io/NativoMates/"
+        link: "https://nativomates.github.io/NativoMates/",
+        tags: ["HTML", "CSS", "JavaScript", "GTM", "GA4"]
     },
-
 
     {
         title: "DISTRIMAT",
-
         description:
-            "Desarrollo de una página web para una distribuidora especializada en cintas adhesivas y soluciones de embalaje. El proyecto presenta productos, cobertura y modalidades de atención, con foco en facilitar consultas, cotizaciones y pedidos de comercios y empresas de Capital Federal.",
-
-        tags: [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "Analytics",
-            "Google Tag Manager"
-        ],
-
+            "Sitio web para un distribuidor especializado en cintas adhesivas y soluciones de packaging, orientado a consultas, presupuestos y pedidos.",
         image: "img/DT1.png",
-
-        link: "https://distrimat.github.io/distrimat/"
+        link: "https://distrimat.github.io/distrimat/",
+        tags: ["HTML", "CSS", "JavaScript", "Analytics", "GTM"]
     },
-
 
     {
         title: "Buscador de Jugadores",
-
         description:
-            "Aplicación web desarrollada en Python para explorar y filtrar jugadores de Primera Nacional según equipo, posición, edad y valor de mercado.",
-
-        tags: [
-            "Python",
-            "Pandas",
-            "Streamlit"
-        ],
-
+            "Aplicación web desarrollada en Python para explorar y filtrar jugadores de Primera Nacional según diferentes variables.",
         image: "img/SCOUT.png",
-
-        link: "https://scoutingjugadores.streamlit.app/"
+        link: "https://scoutingjugadores.streamlit.app/",
+        tags: ["Python", "Pandas", "Streamlit"]
     },
 
+    {
+        title: "Página Web — Perfumería",
+        description:
+            "Boceto de sitio web para una perfumería, diseñado para presentar productos y facilitar consultas.",
+        image: "img/PER.jpg",
+        link: "https://santicz-devs.github.io/perfumeria/",
+        tags: ["HTML", "CSS", "JavaScript"]
+    },
 
     {
-        title: "Página Web - Perfumería",
-
+        title: "Santi — Portfolio",
         description:
-            "Página web creada como boceto para una perfumería, con catálogo de productos y posibilidad de realizar consultas.",
-
-        tags: [
-            "HTML",
-            "CSS",
-            "JavaScript"
-        ],
-
-        image: "img/PER.jpg",
-
-        link: "https://santicz-devs.github.io/perfumeria/"
+            "Diseño y desarrollo de mi portfolio personal para presentar proyectos, experiencia y formación.",
+        image: "img/PORT.png",
+        link: "https://santicz-devs.github.io/PaginaPersonal/",
+        tags: ["HTML", "CSS", "JavaScript", "GitHub Pages"]
     }
-
 ];
 
 
-// ==========================================
-// CONTENEDOR DE PROYECTOS
-// ==========================================
+/* =========================
+   PROJECT CAROUSEL
+========================= */
 
 const projectList = document.getElementById("project-list");
+const projectDots = document.getElementById("project-dots");
+const projectCounter = document.getElementById("project-counter");
+const projectSlider = document.getElementById("project-slider");
+
+let currentProject = 0;
+
+let isDragging = false;
+let startX = 0;
+let currentTranslate = 0;
+let previousTranslate = 0;
 
 
-// ==========================================
-// GENERAR PROYECTOS
-// ==========================================
+/* CREATE PROJECTS */
 
-function renderProjects() {
+projects.forEach((project, index) => {
 
-    if (!projectList) {
-        console.error("No se encontró #project-list");
-        return;
+    const card = document.createElement("article");
+
+    card.className = "project-card";
+
+    card.innerHTML = `
+        <img
+            src="${project.image}"
+            alt="${project.title}"
+            class="project-card-image"
+            draggable="false"
+        >
+
+        <div class="project-card-overlay">
+
+            <span class="project-card-number">
+                ${String(index + 1).padStart(2, "0")}
+            </span>
+
+            <h3>
+                ${project.title}
+            </h3>
+
+            <p class="project-card-description">
+                ${project.description}
+            </p>
+
+            <div class="project-card-tags">
+                ${project.tags
+                    .map(tag => `<span>${tag}</span>`)
+                    .join("")}
+            </div>
+
+        </div>
+
+        <a
+            href="${project.link}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card-link"
+            aria-label="Ver proyecto ${project.title}"
+        >
+            ↗
+        </a>
+    `;
+
+    projectList.appendChild(card);
+});
+
+
+/* CREATE DOTS */
+
+projects.forEach((_, index) => {
+
+    const dot = document.createElement("button");
+
+    dot.className = "project-dot";
+
+    dot.setAttribute(
+        "aria-label",
+        `Ir al proyecto ${index + 1}`
+    );
+
+    dot.addEventListener("click", () => {
+        goToProject(index);
+    });
+
+    projectDots.appendChild(dot);
+});
+
+
+const cards = document.querySelectorAll(".project-card");
+const dots = document.querySelectorAll(".project-dot");
+
+
+/* GET CARD WIDTH */
+
+function getCardWidth() {
+
+    if (!cards.length) {
+        return 0;
     }
 
-    projectList.innerHTML = "";
+    const cardWidth = cards[0].getBoundingClientRect().width;
 
-    projects.forEach(project => {
+    const styles = window.getComputedStyle(projectList);
 
-        // ==================================
-        // IMAGEN
-        // ==================================
+    const gap = parseFloat(styles.gap) || 0;
 
-        let imageHTML = "";
-
-        if (project.image) {
-
-            imageHTML = `
-                <div class="project-image">
-
-                    <img
-                        src="${project.image}"
-                        alt="${project.title}"
-                    >
-
-                </div>
-            `;
-
-        } else {
-
-            imageHTML = `
-                <div class="project-image">
-
-                    <div class="project-image-empty">
-                        IMAGEN DEL PROYECTO
-                    </div>
-
-                </div>
-            `;
-
-        }
+    return cardWidth + gap;
+}
 
 
-        // ==================================
-        // TAGS
-        // ==================================
+/* GO TO PROJECT */
 
-        let tagsHTML = "";
+function goToProject(index) {
 
-        project.tags.forEach(tag => {
+    if (index < 0) {
+        index = 0;
+    }
 
-            tagsHTML += `
-                <span class="project-tag">
-                    ${tag}
-                </span>
-            `;
+    if (index >= projects.length) {
+        index = projects.length - 1;
+    }
 
-        });
+    currentProject = index;
 
+    const offset = getCardWidth() * index;
 
-        // ==================================
-        // LINK
-        // ==================================
+    currentTranslate = -offset;
+    previousTranslate = currentTranslate;
 
-        let linkHTML = "";
+    projectList.style.transform =
+        `translateX(${currentTranslate}px)`;
 
-        if (project.link) {
-
-            linkHTML = `
-                <a
-                    href="${project.link}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="project-link"
-                >
-                    Ver proyecto ↗
-                </a>
-            `;
-
-        }
+    updateProjectUI();
+}
 
 
-        // ==================================
-        // TARJETA
-        // ==================================
+/* UPDATE UI */
 
-        const projectHTML = `
+function updateProjectUI() {
 
-            <article class="project-card">
+    dots.forEach((dot, index) => {
 
-                ${imageHTML}
-
-                <div class="project-content">
-
-                    <div class="project-tags">
-                        ${tagsHTML}
-                    </div>
-
-                    <h3>
-                        ${project.title}
-                    </h3>
-
-                    <p>
-                        ${project.description}
-                    </p>
-
-                    ${linkHTML}
-
-                </div>
-
-            </article>
-
-        `;
-
-
-        projectList.innerHTML += projectHTML;
+        dot.classList.toggle(
+            "active",
+            index === currentProject
+        );
 
     });
 
+    projectCounter.textContent =
+        `${String(currentProject + 1).padStart(2, "0")} / ${String(projects.length).padStart(2, "0")}`;
 }
 
 
-// ==========================================
-// EJECUTAR PROYECTOS
-// ==========================================
+/* =========================
+   DRAG / SWIPE
+========================= */
 
-renderProjects();
+function pointerDown(event) {
 
+    isDragging = true;
 
-// ==========================================
-// TIMELINE
-// ==========================================
+    startX =
+        event.type.includes("touch")
+            ? event.touches[0].clientX
+            : event.clientX;
 
-const timeline = document.querySelector(".timeline");
+    projectSlider.classList.add("dragging");
 
-
-if (timeline) {
-
-    // ======================================
-    // SCROLL CON RUEDA DEL MOUSE
-    // ======================================
-
-    timeline.addEventListener(
-        "wheel",
-        function (event) {
-
-            /*
-             * Si el usuario mueve la rueda
-             * verticalmente, transformamos
-             * ese movimiento en horizontal.
-             */
-
-            if (
-                Math.abs(event.deltaY) >
-                Math.abs(event.deltaX)
-            ) {
-
-                event.preventDefault();
-
-                timeline.scrollLeft += event.deltaY;
-
-            }
-
-        },
-        {
-            passive: false
-        }
-    );
-
-
-    // ======================================
-    // MOVIMIENTO INICIAL
-    // ======================================
-
-    let timelineStarted = false;
-
-
-    const timelineObserver =
-        new IntersectionObserver(
-            (entries) => {
-
-                entries.forEach(entry => {
-
-                    if (
-                        entry.isIntersecting &&
-                        !timelineStarted
-                    ) {
-
-                        timelineStarted = true;
-
-
-                        /*
-                         * Pequeño desplazamiento
-                         * automático para indicar
-                         * que la timeline continúa.
-                         */
-
-                        setTimeout(() => {
-
-                            timeline.scrollTo({
-                                left: 120,
-                                behavior: "smooth"
-                            });
-
-                        }, 500);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.4
-            }
-        );
-
-
-    timelineObserver.observe(timeline);
-
+    projectList.style.transition = "none";
 }
 
 
-// ==========================================
-// DRAG CON MOUSE
-// ==========================================
+function pointerMove(event) {
 
-if (timeline) {
+    if (!isDragging) {
+        return;
+    }
 
-    let isDragging = false;
+    const currentX =
+        event.type.includes("touch")
+            ? event.touches[0].clientX
+            : event.clientX;
 
-    let startX;
+    const difference = currentX - startX;
 
-    let scrollLeft;
+    currentTranslate =
+        previousTranslate + difference;
 
-
-    timeline.addEventListener(
-        "mousedown",
-        (event) => {
-
-            isDragging = true;
-
-            timeline.style.cursor = "grabbing";
-
-            startX = event.pageX - timeline.offsetLeft;
-
-            scrollLeft = timeline.scrollLeft;
-
-        }
-    );
-
-
-    timeline.addEventListener(
-        "mouseleave",
-        () => {
-
-            isDragging = false;
-
-            timeline.style.cursor = "default";
-
-        }
-    );
-
-
-    timeline.addEventListener(
-        "mouseup",
-        () => {
-
-            isDragging = false;
-
-            timeline.style.cursor = "default";
-
-        }
-    );
-
-
-    timeline.addEventListener(
-        "mousemove",
-        (event) => {
-
-            if (!isDragging) {
-                return;
-            }
-
-            event.preventDefault();
-
-
-            const x =
-                event.pageX -
-                timeline.offsetLeft;
-
-
-            const walk =
-                (x - startX) * 1.5;
-
-
-            timeline.scrollLeft =
-                scrollLeft - walk;
-
-        }
-    );
-
+    projectList.style.transform =
+        `translateX(${currentTranslate}px)`;
 }
 
 
-// ==========================================
-// BOTONES / NAVEGACIÓN
-// ==========================================
+function pointerUp() {
 
-const navLinks =
-    document.querySelectorAll(".nav-links a");
+    if (!isDragging) {
+        return;
+    }
+
+    isDragging = false;
+
+    projectSlider.classList.remove("dragging");
+
+    projectList.style.transition =
+        "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
+
+    const movedBy =
+        currentTranslate - previousTranslate;
+
+    const threshold = 80;
+
+    if (movedBy < -threshold) {
+        currentProject++;
+    }
+
+    if (movedBy > threshold) {
+        currentProject--;
+    }
+
+    goToProject(currentProject);
+}
 
 
-navLinks.forEach(link => {
+/* MOUSE */
 
-    link.addEventListener(
-        "click",
-        () => {
+projectSlider.addEventListener(
+    "mousedown",
+    pointerDown
+);
 
-            /*
-             * Cierra cualquier estado
-             * activo que pudiera existir.
-             */
+window.addEventListener(
+    "mousemove",
+    pointerMove
+);
 
-            document.body.classList.remove(
-                "menu-open"
-            );
+window.addEventListener(
+    "mouseup",
+    pointerUp
+);
 
-        }
-    );
+
+/* TOUCH */
+
+projectSlider.addEventListener(
+    "touchstart",
+    pointerDown,
+    { passive: true }
+);
+
+projectSlider.addEventListener(
+    "touchmove",
+    pointerMove,
+    { passive: true }
+);
+
+projectSlider.addEventListener(
+    "touchend",
+    pointerUp
+);
+
+
+/* =========================
+   KEYBOARD
+========================= */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "ArrowRight") {
+        goToProject(currentProject + 1);
+    }
+
+    if (event.key === "ArrowLeft") {
+        goToProject(currentProject - 1);
+    }
+
+});
+
+
+/* =========================
+   RESIZE
+========================= */
+
+window.addEventListener("resize", () => {
+    goToProject(currentProject);
+});
+
+
+/* INITIAL STATE */
+
+updateProjectUI();
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuToggle = document.getElementById("menu-toggle");
+const nav = document.getElementById("nav");
+
+menuToggle.addEventListener("click", () => {
+
+    nav.classList.toggle("active");
+
+});
+
+
+/* CLOSE MENU AFTER CLICK */
+
+nav.querySelectorAll("a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        nav.classList.remove("active");
+
+    });
+
+});
+
+
+/* =========================
+   IMAGE DRAG PREVENTION
+========================= */
+
+document.querySelectorAll("img").forEach(image => {
+
+    image.addEventListener("dragstart", event => {
+        event.preventDefault();
+    });
 
 });
