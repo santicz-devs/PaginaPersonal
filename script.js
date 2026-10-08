@@ -22,6 +22,15 @@ const projects = [
     },
 
     {
+        title: "Hoteleria - Base con SQL",
+        description:
+            "Pagina web creada con el fin de practicar bases de datos en SQL, incluye centro de reservas y un panel de administración donde se pueden gestionar las mismas.",
+        image: "img/HTL.png",
+        link: "https://santicz-devs.github.io/Hoteleria/#inicio",
+        tags: ["Html", "CSS", "JavaScript", "SupaBase", "SQL"]
+    },
+
+    {
         title: "Buscador de Jugadores",
         description:
             "Aplicación web desarrollada en Python para explorar y filtrar jugadores de Primera Nacional según diferentes variables.",
