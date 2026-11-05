@@ -8,7 +8,7 @@ const projects = [
         title: "NativoMates",
         description: "Desarrollo web para un emprendimiento comercial, con información del negocio, catálogo de productos y contacto directo.",
         image: "img/NM1.png",
-        link: "https://nativomates.github.io/NativoMates/",
+        link: "https://nativomates.github.io/nativomates/",
         tags: ["HTML", "CSS", "JavaScript", "GTM", "GA4"]
     },
     {
