@@ -45,6 +45,13 @@ const projects = [
         image: "img/Santi.jpg",
         link: "https://santicz-devs.github.io/PaginaPersonal/",
         tags: ["HTML", "CSS", "JavaScript", "GitHub Pages"]
+    },
+    {
+        title: "DietApp",
+        description: "WebApp con el fin de medir el consumo de KCal.",
+        image: "img/.jpg",
+        link: "https://santicz-devs.github.io/Dietapp/",
+        tags: ["HTML", "CSS", "JavaScript", "GitHub Pages", "Cloudfare"]
     }
 ];
 
