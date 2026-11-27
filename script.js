@@ -28,7 +28,7 @@ const projects = [
     {
         title: "SCOUTDESK",
         description: "Aplicación desarrollada en Python para explorar y filtrar jugadores de Primera Nacional a partir de un dataset.",
-        image: "img/ScoutDesk.pngg",
+        image: "img/ScoutDesk.png",
         link: "https://github.com/santicz-devs/ScoutDesk",
         tags: ["Python", "Pandas", "Streamlit"]
     },
