@@ -26,10 +26,10 @@ const projects = [
         tags: ["HTML", "CSS", "JavaScript", "Supabase", "SQL"]
     },
     {
-        title: "Buscador de Jugadores",
+        title: "SCOUTDESK",
         description: "Aplicación desarrollada en Python para explorar y filtrar jugadores de Primera Nacional a partir de un dataset.",
-        image: "img/SCOUT.png",
-        link: "https://scoutingjugadores.streamlit.app/",
+        image: "img/ScoutDesk.pngg",
+        link: "https://github.com/santicz-devs/ScoutDesk",
         tags: ["Python", "Pandas", "Streamlit"]
     },
     {
